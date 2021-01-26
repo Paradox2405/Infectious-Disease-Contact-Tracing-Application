@@ -1,0 +1,3 @@
+include ':herald'
+include ':app'
+rootProject.name = "Herald-for-Android"
