@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="0dp"
-        android:background="?attr/colorPrimary"
+        android:background="#00E676"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme" />
 
@@ -21,5 +21,40 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbarMain"
-        android:scrollbars="vertical"/>
+        android:layout_marginTop="0dp"
+        android:background="#2300E676"
+        android:scrollbars="vertical" />
+
+    <Button
+        android:id="@+id/btn_refresh"
+        android:layout_width="39dp"
+        android:layout_height="36dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@android:drawable/stat_notify_sync"
+        android:backgroundTint="#304FFE"
+        android:backgroundTintMode="src_in"
+        android:clickable="true"
+        android:onClick="refreshClicked" />
+
+    <TextView
+        android:id="@+id/headerText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/toolbarMain"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="0dp"
+        android:layout_marginBottom="0dp"
+        android:fontFamily="sans-serif-black"
+        android:text="Local Statistics"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold" />
 </RelativeLayout>
