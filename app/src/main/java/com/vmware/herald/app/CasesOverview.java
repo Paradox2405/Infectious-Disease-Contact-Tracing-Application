@@ -2,6 +2,7 @@ package com.vmware.herald.app;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,7 +25,6 @@ public class CasesOverview extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    //private ArrayList<PandemicItem> mPandemicItem;
     private RequestQueue mRequestQueue;
 
 
@@ -33,21 +33,7 @@ public class CasesOverview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cases_overview);
 
-
-//        ArrayList<PandemicItem> pandemicItems = new ArrayList<>();
-//        pandemicItems.add(new PandemicItem(R.drawable.total_count,22,"Line 2"));
-//        pandemicItems.add(new PandemicItem(R.drawable.cases_today,12,"Line 4"));
-//        pandemicItems.add(new PandemicItem(R.drawable.active_cases,122,"Line 6"));
-//
-//        mRecyclerView=findViewById(R.id.recyclerView);
-//        mRecyclerView.setHasFixedSize(true);
-       mLayoutManager= new LinearLayoutManager(this);
-//        mAdapter= new PandemicItemAdapter(pandemicItems);
-//
-//       mRecyclerView.setLayoutManager(mLayoutManager);
-//       mRecyclerView.setAdapter(mAdapter);
-
-       //mPandemicItem= new ArrayList<>();
+        mLayoutManager= new LinearLayoutManager(this);
         mRequestQueue= Volley.newRequestQueue(this);
         parseJSON();
 
@@ -87,20 +73,26 @@ public class CasesOverview extends AppCompatActivity {
 
 
                 } catch (JSONException e) {
-                    e.printStackTrace();
+                    System.out.println(e);
+
+
                 }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
             error.printStackTrace();
+                Toast.makeText(getApplicationContext(),"Check Internet Connection",Toast.LENGTH_LONG).show();
             }
         });
         mRequestQueue.add(request);
     }
 
 
+
     public void refreshClicked(View view) {
+
         parseJSON();
+
     }
 }
