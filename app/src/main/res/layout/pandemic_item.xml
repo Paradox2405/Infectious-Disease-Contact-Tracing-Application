@@ -10,51 +10,51 @@
     app:cardUseCompatPadding="true">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="184dp"
+        android:layout_width="173dp"
+        android:layout_height="103dp"
         android:layout_margin="4dp">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/imageView"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="45dp"
+            android:layout_height="43dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="42dp"
-            android:layout_marginBottom="42dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
             android:padding="2dp" />
 
         <TextView
             android:id="@+id/txt1"
-            android:layout_width="wrap_content"
-            android:layout_height="62dp"
+            android:layout_width="213dp"
+            android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginStart="29dp"
+            android:layout_marginStart="2dp"
             android:layout_marginTop="7dp"
-            android:layout_marginEnd="29dp"
+            android:layout_marginEnd="4dp"
             android:layout_toEndOf="@+id/imageView"
-            android:text="herllo"
+            android:text="test"
             android:textAlignment="center"
             android:textColor="#FFAB00"
-            android:textSize="24sp"
+            android:textSize="14sp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txt2"
-            android:layout_width="227dp"
-            android:layout_height="96dp"
+            android:layout_width="203dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/txt1"
             android:layout_alignStart="@+id/txt1"
             android:layout_alignEnd="@+id/txt1"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="3dp"
-            android:text="hii"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="2dp"
+            android:text="testing"
             android:textAlignment="center"
             android:textColor="#FFAB00"
-            android:textSize="50sp"
+            android:textSize="36sp"
             android:textStyle="bold" />
 
 
