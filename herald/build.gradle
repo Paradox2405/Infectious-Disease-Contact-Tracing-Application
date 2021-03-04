@@ -1,5 +1,6 @@
 plugins {
     id 'maven-publish'
+
 }
 
 group = 'com.vmware.herald'
@@ -9,7 +10,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "30.0.1"
+    buildToolsVersion '30.0.3'
 
     defaultConfig {
         minSdkVersion 21

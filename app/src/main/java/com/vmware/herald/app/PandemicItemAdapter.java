@@ -51,22 +51,25 @@ public class PandemicItemAdapter extends RecyclerView.Adapter<PandemicItemAdapte
         holder.mTextView1.setText(currentItem.gettxt1());
         holder.mTextView2.setText(""+currentItem.gettxt2());
         if(position == 1){
-            holder.mTextView1.setTextColor(Color.BLUE);
-            holder.mTextView2.setTextColor(Color.BLUE);
+            holder.mTextView1.setTextColor(Color.GREEN);
+            holder.mTextView2.setTextColor(Color.GREEN);
         }
         if(position == 2){
             holder.mTextView1.setTextColor(Color.MAGENTA);
             holder.mTextView2.setTextColor(Color.MAGENTA);
         }
         if(position == 3){
+            holder.mTextView1.setTextColor(Color.BLUE);
+            holder.mTextView2.setTextColor(Color.BLUE);
+        }
+        if(position == 4){
             holder.mTextView1.setTextColor(Color.RED);
             holder.mTextView2.setTextColor(Color.RED);
         }
-        if(position == 4){
-            holder.mTextView1.setTextColor(Color.GREEN);
-            holder.mTextView2.setTextColor(Color.GREEN);
+        if(position == 5){
+            holder.mTextView1.setTextColor(Color.RED);
+            holder.mTextView2.setTextColor(Color.RED);
         }
-
 
 
     }

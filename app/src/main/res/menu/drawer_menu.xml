@@ -4,15 +4,15 @@
     tools:showIn="navigation_view">
 <group android:checkableBehavior="single">
     <item
-        android:id="@+id/nav_message"
+        android:id="@+id/nav_localcases"
         android:icon="@drawable/casesoverview"
         android:title="Local Cases Overview" />
     <item
-        android:id="@+id/nav_chat"
+        android:id="@+id/nav_mapview"
         android:icon="@drawable/mapview"
         android:title="Map View" />
     <item
-        android:id="@+id/nav_profile"
+        android:id="@+id/nav_contactlogs"
         android:icon="@drawable/interactions"
         android:title="Contact Logs" />
 </group>
