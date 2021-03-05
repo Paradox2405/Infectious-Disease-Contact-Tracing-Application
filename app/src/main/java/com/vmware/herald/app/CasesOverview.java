@@ -45,18 +45,15 @@ public class CasesOverview extends AppCompatActivity implements NavigationView.O
         Toolbar toolbar= findViewById(R.id.toolbar);
         toolbar.setTitle("Local Statistics");
         setSupportActionBar(toolbar);
+
         drawer=findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer,toolbar,
                 R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
-
         navigationView.setCheckedItem(R.id.nav_localcases);
 
         mLayoutManager= new GridLayoutManager(this,2);
