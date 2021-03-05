@@ -1,7 +1,7 @@
 package com.vmware.herald.app;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -23,7 +23,6 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -43,24 +42,22 @@ public class CasesOverview extends AppCompatActivity implements NavigationView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.cases_overview);
 
-        Toolbar toolbar = findViewById(R.id.toolbarMain);
+        Toolbar toolbar= findViewById(R.id.toolbar);
+        toolbar.setTitle("Local Statistics");
         setSupportActionBar(toolbar);
         drawer=findViewById(R.id.drawer_layout);
-
-//         NavigationView navigationView = findViewById(R.id.nav_localcases);
-//         navigationView.setNavigationItemSelectedListener(this);
-
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
 
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer,
-                toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer,toolbar,
+                R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-//        getSupportFragmentManager().beginTransaction().replace(R.id.recyclerView,
-//                new MapviewFragment()).commit();
-//        navigationView.setCheckedItem(R.id.nav_mapview);
+
+        navigationView.setCheckedItem(R.id.nav_localcases);
 
         mLayoutManager= new GridLayoutManager(this,2);
         mRequestQueue= Volley.newRequestQueue(this);
@@ -74,15 +71,18 @@ public class CasesOverview extends AppCompatActivity implements NavigationView.O
 
 
         switch (item.getItemId()){
-
+            case R.id.nav_localcases:
+                Intent local = new Intent(CasesOverview.this,CasesOverview.class);
+                startActivity(local);
+                break;
 
             case R.id.nav_mapview:
-                getSupportFragmentManager().beginTransaction().replace(R.id.recyclerView,
-                        new MapviewFragment()).commit();
+                Intent maps = new Intent(CasesOverview.this,Mapview.class);
+                startActivity(maps);
                 break;
             case R.id.nav_contactlogs:
-                getSupportFragmentManager().beginTransaction().replace(R.id.recyclerView,
-                        new ContactlogsFragment()).commit();
+                Intent contacts = new Intent(CasesOverview.this,Contactlogs.class);
+                startActivity(contacts);
                 break;
             case R.id.nav_share:
                 Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();

@@ -31,6 +31,7 @@
 
         <activity
             android:name=".LoginActivity"
+            android:theme="@style/AppTheme.NoActionbar"
             android:configChanges="orientation"
             android:screenOrientation="portrait" >
             <intent-filter>
@@ -40,6 +41,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".CasesOverview"
+            android:theme="@style/AppTheme.NoActionbar"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".Mapview"
+            android:theme="@style/AppTheme.NoActionbar"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".Contactlogs"
+            android:theme="@style/AppTheme.NoActionbar"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
 
