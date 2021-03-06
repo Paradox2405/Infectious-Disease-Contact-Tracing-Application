@@ -2,10 +2,7 @@ package com.vmware.herald.app;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,18 +13,29 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.navigation.NavigationView;
 
-public class Mapview extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class Mapview extends AppCompatActivity implements  NavigationView.OnNavigationItemSelectedListener, OnMapReadyCallback {
     private DrawerLayout drawer;
+   MapView mapView;
+   GoogleMap map;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mapviewcases);
+
+
+
+        mapView=findViewById(R.id.mapView);
+        mapView.getMapAsync(this);
+        mapView.onCreate(savedInstanceState);
 
         Toolbar toolbar= findViewById(R.id.toolbar);
         toolbar.setTitle("Map Data");
@@ -86,5 +94,37 @@ public class Mapview extends AppCompatActivity implements NavigationView.OnNavig
     }
 
 
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        map = googleMap;
+        LatLng SriLanka = new LatLng(7.8731, 80.7718);
+        map.addMarker(new MarkerOptions()
+                .position(SriLanka)
+                .title("Sri Lanka"));
+        map.moveCamera(CameraUpdateFactory.newLatLng(SriLanka));
+        map.animateCamera(CameraUpdateFactory.zoomTo(7.5f));
+    }
+    @Override
+    public void onResume() {
+        mapView.onResume();
+        super.onResume();
+    }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        mapView.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mapView.onDestroy();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
+    }
 }

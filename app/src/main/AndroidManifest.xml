@@ -3,6 +3,8 @@
     package="com.vmware.herald.app" >
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="com.google.android.providers.gsf.permission.
    READ_GSERVICES"/>
@@ -27,7 +29,7 @@
       -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="@string/maps_api_key" />
+            android:value="AIzaSyBcRDONBHB732Kvj-W6dXixNUtIX_OAvEE" />
 
         <activity
             android:name=".LoginActivity"
