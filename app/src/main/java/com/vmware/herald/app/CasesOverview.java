@@ -82,8 +82,11 @@ public class CasesOverview extends AppCompatActivity implements NavigationView.O
                 startActivity(contacts);
                 break;
             case R.id.nav_share:
-                Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
+                Intent share = new Intent(CasesOverview.this,MainActivity.class);
+                startActivity(share);
                 break;
+//                Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
+//                break;
             case R.id.nav_send:
                 Toast.makeText(this, "Send", Toast.LENGTH_SHORT).show();
                 break;
