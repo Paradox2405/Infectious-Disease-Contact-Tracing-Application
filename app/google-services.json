@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "563747245947",
+    "project_id": "id-contact-tracing-application",
+    "storage_bucket": "id-contact-tracing-application.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563747245947:android:ab16210e453d90aaf4f7de",
+        "android_client_info": {
+          "package_name": "com.idcta.proj.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "563747245947-39a948kvl0h0ehcu1nq5p5a2cut84s79.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC97XTJiWUa_qBa3tlKVneKYAtQ-Kx37zM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "563747245947-39a948kvl0h0ehcu1nq5p5a2cut84s79.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
