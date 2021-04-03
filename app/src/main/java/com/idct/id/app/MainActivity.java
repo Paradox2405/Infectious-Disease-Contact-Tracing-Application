@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -84,7 +85,10 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate, A
         final ListView targetsListView = ((ListView) findViewById(R.id.targets));
         targetsListView.setAdapter(targetListAdapter);
         targetsListView.setOnItemClickListener(this);
+
+
     }
+
 
     /// REQUIRED : Request application permissions for sensor operation.
     private void requestPermissions() {
@@ -361,6 +365,12 @@ public class MainActivity extends AppCompatActivity implements SensorDelegate, A
     @Override
     public void sensor(SensorType sensor, Location didVisit) {
         // Not used
+        Toast.makeText(getApplicationContext(), "TESTING LCOATION!", Toast.LENGTH_LONG).show();
+        String loc = didVisit.toString();
+        Log.e(null,"caseeeee yakowkwokwok\n hfhdj  "+loc);
+        TextView test=(TextView)findViewById(R.id.location_test);
+        test.setText(loc);
+
     }
 
     @Override

@@ -34,6 +34,8 @@ public class CasesOverview extends AppCompatActivity implements NavigationView.O
     private RecyclerView.LayoutManager mLayoutManager;
     private RequestQueue mRequestQueue;
     private DrawerLayout drawer;
+    //Give your SharedPreferences file a name and save it to a static variable
+    public static final String PREFS_NAME = "MyPrefsFile";
 
 
 
@@ -131,7 +133,7 @@ public class CasesOverview extends AppCompatActivity implements NavigationView.O
                     pandemicItems.add(new PandemicItem(R.drawable.active_cases,"Suspected & Hospitalized",hospitalizedCases));
                     pandemicItems.add(new PandemicItem(R.drawable.cases_today,"New Cases (Today)",newCases));
                     pandemicItems.add(new PandemicItem(R.drawable.dead,"Total Deaths",deaths));
-                    pandemicItems.add(new PandemicItem(R.drawable.dead,"Deaths \n(Today)",deathstoday));
+                    pandemicItems.add(new PandemicItem(R.drawable.dead,"Deaths\n(Today)",deathstoday));
 
 
                     mRecyclerView=findViewById(R.id.recyclerView);

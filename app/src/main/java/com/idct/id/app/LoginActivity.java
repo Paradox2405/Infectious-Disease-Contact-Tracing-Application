@@ -30,6 +30,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity  {
+    String identifier = ((SensorArray) AppDelegate.getAppDelegate().sensor()).payloadData().shortName();
+
+    //Give your SharedPreferences file a name and save it to a static variable
+    public static final String PREFS_NAME = "MyPrefsFile";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -40,7 +44,8 @@ public class LoginActivity extends AppCompatActivity  {
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adddata();
+                existingUser();
+
             }
         });
 
@@ -49,7 +54,8 @@ public class LoginActivity extends AppCompatActivity  {
 
     }
 
-public void adddata() {
+
+public void existingUser() {
 
     EditText n = (EditText) findViewById(R.id.txt_name);
     String name = n.getText().toString();
@@ -59,9 +65,6 @@ public void adddata() {
     String address = a.getText().toString();
     EditText nu = (EditText) findViewById(R.id.txt_id);
     String number = nu.getText().toString();
-    String identifier = ((SensorArray) AppDelegate.getAppDelegate().sensor()).payloadData().shortName();
-    // Access a Cloud Firestore instance from your Activity
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     // Create a new user with a first and last name
     Map<String, Object> user = new HashMap<>();
@@ -71,44 +74,90 @@ public void adddata() {
     user.put("phone", number);
     user.put("Unique Identifier", identifier);
 
-
 // Add a new document with a generated ID
     FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
     CollectionReference allUsersRef = rootRef.collection("user");
     Query uIDQuery = allUsersRef.whereEqualTo("Unique Identifier", identifier);
-    Query uIDQueryF =allUsersRef.whereNotEqualTo("Unique Identifier", identifier);
+
        uIDQuery.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
            @Override
            public void onComplete(@NonNull Task<QuerySnapshot> task) {
                if (task.isSuccessful()) {
-                   for (DocumentSnapshot document: task.getResult()) {
-                       if (document.exists()) {
+                   if (task.getResult().isEmpty()){
+                       newUser();
 
-                           Toast.makeText(getApplicationContext(), "You are already Registe" +
-                                   "red!", Toast.LENGTH_LONG).show();
-                           Intent local = new Intent(LoginActivity.this, CasesOverview.class);
-                           startActivity(local);
+               } else{
+                       for (DocumentSnapshot document : task.getResult()) {
+                           if (document.exists()) {
+                               Toast.makeText(getApplicationContext(), "You are already Registe" +
+                                       "red!", Toast.LENGTH_LONG).show();
+                               Intent local = new Intent(LoginActivity.this, CasesOverview.class);
+                               startActivity(local);
+                               LoginActivity.this.finish();
+
+                           } else {
+                               Log.e(null, "Id does not exists");
+                           }
+
                        }
-
                    }
-
                } else {
-
-                   Log.e(null, "Id does not exists");
-
+                   Log.e(null, "Database Error ");
                }
            }
        });
-       uIDQueryF.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-           @Override
-           public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-               allUsersRef.add(user);
-               Log.w(null, "DocumentSnapshot added with ID: " + identifier);
-                    Toast.makeText(getApplicationContext(), "User Successfully" +
-                            " Added!", Toast.LENGTH_LONG).show();
-                    Intent local = new Intent(LoginActivity.this, CasesOverview.class);
-                    startActivity(local);
-           }
-       });
+
+
+
+
+
     }
+    public void newUser(){
+        EditText n = (EditText) findViewById(R.id.txt_name);
+        String name = n.getText().toString();
+        EditText i = (EditText) findViewById(R.id.txt_id);
+        String id = i.getText().toString();
+        EditText a = (EditText) findViewById(R.id.txt_address);
+        String address = a.getText().toString();
+        EditText nu = (EditText) findViewById(R.id.txt_id);
+        String number = nu.getText().toString();
+
+        // Create a new user with a first and last name
+        Map<String, Object> user = new HashMap<>();
+        user.put("name", name);
+        user.put("ID", id);
+        user.put("address", address);
+        user.put("phone", number);
+        user.put("Unique Identifier", identifier);
+
+        FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
+        CollectionReference allUsersRef = rootRef.collection("user");
+        Query uIDQueryF =allUsersRef.whereNotEqualTo("Unique Identifier", identifier);
+        uIDQueryF.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
+                if (task.isSuccessful()) {
+                    for (DocumentSnapshot document: task.getResult()) {
+                        if (document.exists()) {
+                            allUsersRef.add(user);
+                            Log.w(null, "DocumentSnapshot added with ID: " + identifier);
+                            Toast.makeText(getApplicationContext(), "User Successfully" +
+                                    " Added!", Toast.LENGTH_LONG).show();
+                            Intent local = new Intent(LoginActivity.this, CasesOverview.class);
+                            startActivity(local);
+                            LoginActivity.this.finish();
+                        }
+
+                    }
+
+                } else {
+
+                    Log.e(null, "Id does not exists");
+
+                }
+            }
+        });
+    }
+
 }
