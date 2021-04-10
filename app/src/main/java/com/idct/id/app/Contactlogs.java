@@ -224,15 +224,18 @@ public class Contactlogs extends AppCompatActivity implements SensorDelegate, Na
             case R.id.nav_localcases:
                 Intent local = new Intent(Contactlogs.this,CasesOverview.class);
                 startActivity(local);
+                Contactlogs.this.finish();
                 break;
 
             case R.id.nav_mapview:
                 Intent maps = new Intent(Contactlogs.this,Mapview.class);
                 startActivity(maps);
+                Contactlogs.this.finish();
                 break;
             case R.id.nav_contactlogs:
                 Intent contacts = new Intent(Contactlogs.this,Contactlogs.class);
                 startActivity(contacts);
+                Contactlogs.this.finish();
                 break;
             case R.id.nav_share:
                 Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();

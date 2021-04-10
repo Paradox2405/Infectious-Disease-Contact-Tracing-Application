@@ -73,19 +73,23 @@ public class CasesOverview extends AppCompatActivity implements NavigationView.O
             case R.id.nav_localcases:
                 Intent local = new Intent(CasesOverview.this,CasesOverview.class);
                 startActivity(local);
+                CasesOverview.this.finish();
                 break;
 
             case R.id.nav_mapview:
                 Intent maps = new Intent(CasesOverview.this,Mapview.class);
                 startActivity(maps);
+                CasesOverview.this.finish();
                 break;
             case R.id.nav_contactlogs:
                 Intent contacts = new Intent(CasesOverview.this,Contactlogs.class);
                 startActivity(contacts);
+                CasesOverview.this.finish();
                 break;
             case R.id.nav_share:
                 Intent share = new Intent(CasesOverview.this,MainActivity.class);
                 startActivity(share);
+                CasesOverview.this.finish();
                 break;
 //                Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();
 //                break;

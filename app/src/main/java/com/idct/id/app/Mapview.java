@@ -61,15 +61,18 @@ public class Mapview extends AppCompatActivity implements  NavigationView.OnNavi
             case R.id.nav_localcases:
                 Intent local = new Intent(Mapview.this,CasesOverview.class);
                 startActivity(local);
+                Mapview.this.finish();
                 break;
 
             case R.id.nav_mapview:
                 Intent maps = new Intent(Mapview.this,Mapview.class);
                 startActivity(maps);
+                Mapview.this.finish();
                 break;
             case R.id.nav_contactlogs:
                 Intent contacts = new Intent(Mapview.this,Contactlogs.class);
                 startActivity(contacts);
+                Mapview.this.finish();
                 break;
             case R.id.nav_share:
                 Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show();

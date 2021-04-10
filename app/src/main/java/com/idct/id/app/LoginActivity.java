@@ -1,6 +1,7 @@
 package com.idct.id.app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -40,6 +41,8 @@ public class LoginActivity extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        onStartup();
+
         Button btnnext= findViewById(R.id.btn_next);
         btnnext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,7 +56,19 @@ public class LoginActivity extends AppCompatActivity  {
 
 
     }
+public void onStartup(){
+    SharedPreferences settings = getSharedPreferences(LoginActivity.PREFS_NAME, 0);
+//Get "hasLoggedIn" value. If the value doesn't exist yet false is returned
+    boolean hasLoggedIn = settings.getBoolean("hasLoggedIn", false);
 
+    if(hasLoggedIn)
+    {
+        Intent local = new Intent(LoginActivity.this, CasesOverview.class);
+        startActivity(local);
+        LoginActivity.this.finish();
+
+    }
+}
 
 public void existingUser() {
 
@@ -63,7 +78,7 @@ public void existingUser() {
     String id = i.getText().toString();
     EditText a = (EditText) findViewById(R.id.txt_address);
     String address = a.getText().toString();
-    EditText nu = (EditText) findViewById(R.id.txt_id);
+    EditText nu = (EditText) findViewById(R.id.txt_number);
     String number = nu.getText().toString();
 
     // Create a new user with a first and last name
@@ -91,6 +106,7 @@ public void existingUser() {
                            if (document.exists()) {
                                Toast.makeText(getApplicationContext(), "You are already Registe" +
                                        "red!", Toast.LENGTH_LONG).show();
+                               checkLogin();
                                Intent local = new Intent(LoginActivity.this, CasesOverview.class);
                                startActivity(local);
                                LoginActivity.this.finish();
@@ -119,7 +135,7 @@ public void existingUser() {
         String id = i.getText().toString();
         EditText a = (EditText) findViewById(R.id.txt_address);
         String address = a.getText().toString();
-        EditText nu = (EditText) findViewById(R.id.txt_id);
+        EditText nu = (EditText) findViewById(R.id.txt_number);
         String number = nu.getText().toString();
 
         // Create a new user with a first and last name
@@ -144,9 +160,11 @@ public void existingUser() {
                             Log.w(null, "DocumentSnapshot added with ID: " + identifier);
                             Toast.makeText(getApplicationContext(), "User Successfully" +
                                     " Added!", Toast.LENGTH_LONG).show();
+                            checkLogin();
                             Intent local = new Intent(LoginActivity.this, CasesOverview.class);
                             startActivity(local);
                             LoginActivity.this.finish();
+
                         }
 
                     }
@@ -159,5 +177,14 @@ public void existingUser() {
             }
         });
     }
-
+public void checkLogin(){
+ //User has successfully logged in, save this information
+// We need an Editor object to make preference changes.
+SharedPreferences settings = getSharedPreferences(LoginActivity.PREFS_NAME, 0); // 0 - for private mode
+SharedPreferences.Editor editor = settings.edit();
+//Set "hasLoggedIn" to true
+editor.putBoolean("hasLoggedIn", true);
+// Commit the edits!
+editor.apply();
+    }
 }
