@@ -28,7 +28,7 @@
       -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyBcRDONBHB732Kvj-W6dXixNUtIX_OAvEE" />
+            android:value="AIzaSyC97XTJiWUa_qBa3tlKVneKYAtQ-Kx37zM" />
 
         <activity
             android:name="com.idct.id.app.LoginActivity"

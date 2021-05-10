@@ -1,7 +1,9 @@
 package com.idct.id.app;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -36,6 +38,8 @@ public class CasesOverview extends AppCompatActivity implements NavigationView.O
     private DrawerLayout drawer;
     //Give your SharedPreferences file a name and save it to a static variable
     public static final String PREFS_NAME = "MyPrefsFile";
+    final int delay = 60000;//refresh cases interval
+    final Handler handler = new Handler();
 
 
 
@@ -52,6 +56,13 @@ public class CasesOverview extends AppCompatActivity implements NavigationView.O
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+//test of adding header data
+//     TextView name= (TextView) findViewById(R.id.txt_name);
+//        SharedPreferences prefs= getSharedPreferences(CasesOverview.PREFS_NAME,0);
+//        String names= prefs.getString("name", "");
+//        name.setText(names);
+
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer,toolbar,
                 R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -60,7 +71,16 @@ public class CasesOverview extends AppCompatActivity implements NavigationView.O
 
         mLayoutManager= new GridLayoutManager(this,2);
         mRequestQueue= Volley.newRequestQueue(this);
+//run cases once
         parseJSON();
+        //refresh cases
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                parseJSON();
+                System.out.println("Cases Refreshed!"); // Do your work here
+                handler.postDelayed(this, delay);
+            }
+        }, delay);
 
 
     }
@@ -164,10 +184,4 @@ public class CasesOverview extends AppCompatActivity implements NavigationView.O
     }
 
 
-
-    public void refreshClicked(View view) {
-
-        parseJSON();
-
-    }
 }

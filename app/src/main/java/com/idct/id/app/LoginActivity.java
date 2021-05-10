@@ -13,17 +13,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.idct.id.sensor.SensorArray;
 
@@ -35,6 +30,7 @@ public class LoginActivity extends AppCompatActivity  {
 
     //Give your SharedPreferences file a name and save it to a static variable
     public static final String PREFS_NAME = "MyPrefsFile";
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -178,12 +174,14 @@ public void existingUser() {
         });
     }
 public void checkLogin(){
+
  //User has successfully logged in, save this information
 // We need an Editor object to make preference changes.
 SharedPreferences settings = getSharedPreferences(LoginActivity.PREFS_NAME, 0); // 0 - for private mode
 SharedPreferences.Editor editor = settings.edit();
 //Set "hasLoggedIn" to true
 editor.putBoolean("hasLoggedIn", true);
+//editor.putString("name",name);
 // Commit the edits!
 editor.apply();
     }

@@ -7,13 +7,16 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
     <TextView
+        android:id="@+id/txt_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
-        android:text="Virus  Tracker"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
     <TextView
+        android:id="@+id/txt_nic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="tracker@gmil.com" />

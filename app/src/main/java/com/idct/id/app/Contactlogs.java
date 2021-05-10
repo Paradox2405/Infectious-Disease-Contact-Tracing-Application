@@ -371,6 +371,8 @@ public class Contactlogs extends AppCompatActivity implements SensorDelegate, Na
 
     @Override
     public void sensor(SensorType sensor, Location didVisit) {
+        Object loc = didVisit.value;
+        Log.e(null,"Loction Result  "+loc);
         // Not used
     }
 
