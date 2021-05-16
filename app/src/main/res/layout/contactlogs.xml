@@ -15,6 +15,23 @@
         android:layout_height="match_parent"
         android:background="#2300E676">
 
+        <ImageButton
+            android:id="@+id/btn_sharelogs"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="3dp"
+            android:adjustViewBounds="true"
+            android:backgroundTint="#00C853"
+            android:padding="12dp"
+            android:scaleType="fitCenter"
+            android:tint="#FFFFFF"
+            app:srcCompat="@drawable/share" />
+
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
@@ -66,16 +83,16 @@
 
         <ListView
             android:id="@+id/targets"
-            android:layout_width="378dp"
-            android:layout_height="200dp"
+            android:layout_width="match_parent"
+            android:layout_height="546dp"
+            android:layout_above="@+id/btn_sharelogs"
             android:layout_below="@+id/detection"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
             android:layout_marginStart="0dp"
             android:layout_marginTop="10dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="10dp"/>
+            android:layout_marginEnd="0dp"
+            android:layout_marginBottom="4dp" />
 
 
     </RelativeLayout>

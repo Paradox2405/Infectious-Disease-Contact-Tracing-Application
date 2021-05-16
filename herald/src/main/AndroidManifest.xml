@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.idct.id">
+    package="com.idcta.proj">
 
     <!-- Must support Bluetooth LE -->
     <uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
@@ -15,7 +15,7 @@
     <!-- Foreground service for Bluetooth LE as background process -->
     <application>
         <service
-            android:name="com.idct.id.sensor.service.ForegroundService"
+            android:name="com.idcta.proj.sensor.service.ForegroundService"
             android:foregroundServiceType="location" />
    </application>
 </manifest>

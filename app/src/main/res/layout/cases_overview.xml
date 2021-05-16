@@ -29,9 +29,11 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="609dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btn_qr"
             android:layout_below="@+id/update_time"
             android:layout_marginTop="5dp"
+            android:layout_marginBottom="8dp"
             android:scrollbars="vertical" />
 
         <TextView
@@ -50,16 +52,16 @@
         <ImageButton
             android:id="@+id/btn_qr"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/recyclerView"
+            android:layout_height="60dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
             android:layout_marginStart="0dp"
-            android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
+            android:layout_marginBottom="10dp"
             android:adjustViewBounds="true"
             android:backgroundTint="#00C853"
-            android:padding="10dp"
+            android:padding="12dp"
             android:scaleType="fitCenter"
             android:tint="#FFFFFF"
             app:srcCompat="@drawable/download" />

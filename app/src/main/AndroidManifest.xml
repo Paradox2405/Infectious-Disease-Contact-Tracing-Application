@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.idct.id.app" >
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.idcta.proj.app">
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
@@ -10,14 +15,24 @@
    READ_GSERVICES"/>
 
     <application
-        android:name="com.idct.id.app.AppDelegate"
+        android:name="com.idcta.proj.app.AppDelegate"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:hardwareAccelerated="true">
+        android:hardwareAccelerated="true"
+        android:requestLegacyExternalStorage="true">
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths" />
+        </provider>
 
         <meta-data
             android:name="com.google.android.gms.version"
@@ -31,7 +46,7 @@
             android:value="AIzaSyC97XTJiWUa_qBa3tlKVneKYAtQ-Kx37zM" />
 
         <activity
-            android:name="com.idct.id.app.LoginActivity"
+            android:name="com.idcta.proj.app.LoginActivity"
             android:theme="@style/AppTheme.NoActionbar"
             android:configChanges="orientation"
             android:screenOrientation="portrait" >
@@ -41,22 +56,22 @@
             </intent-filter>
         </activity>
 
-        <activity android:name="com.idct.id.app.CasesOverview"
+        <activity android:name="com.idcta.proj.app.CasesOverview"
             android:theme="@style/AppTheme.NoActionbar"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
 
-        <activity android:name="com.idct.id.app.Mapview"
+        <activity android:name="com.idcta.proj.app.Mapview"
             android:theme="@style/AppTheme.NoActionbar"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
 
-        <activity android:name="com.idct.id.app.Contactlogs"
+        <activity android:name="com.idcta.proj.app.Contactlogs"
             android:theme="@style/AppTheme.NoActionbar"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
 
-        <activity android:name="com.idct.id.app.MainActivity"
+        <activity android:name="com.idcta.proj.app.MainActivity"
             android:theme="@style/AppTheme.NoActionbar"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>
