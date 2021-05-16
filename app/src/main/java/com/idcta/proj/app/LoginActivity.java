@@ -59,7 +59,7 @@ public class LoginActivity extends AppCompatActivity  {
 
 
     }
-public void onStartup(){
+private void onStartup(){
     SharedPreferences settings = getSharedPreferences(LoginActivity.PREFS_NAME, 0);
 //Get "hasLoggedIn" value. If the value doesn't exist yet false is returned
     boolean hasLoggedIn = settings.getBoolean("hasLoggedIn", false);
@@ -67,30 +67,14 @@ public void onStartup(){
     if(hasLoggedIn)
     {
         Intent local = new Intent(LoginActivity.this, CasesOverview.class);
+        finish();
         startActivity(local);
-        LoginActivity.this.finish();
 
     }
 }
 
-public void existingUser() {
+private void existingUser() {
 
-    EditText n = (EditText) findViewById(R.id.txt_name);
-    String name = n.getText().toString();
-    EditText i = (EditText) findViewById(R.id.txt_id);
-    String id = i.getText().toString();
-    EditText a = (EditText) findViewById(R.id.txt_address);
-    String address = a.getText().toString();
-    EditText nu = (EditText) findViewById(R.id.txt_number);
-    String number = nu.getText().toString();
-
-    // Create a new user with a first and last name
-    Map<String, Object> user = new HashMap<>();
-    user.put("name", name);
-    user.put("ID", id);
-    user.put("address", address);
-    user.put("phone", number);
-    user.put("Unique Identifier", identifier);
 
 // Add a new document with a generated ID
     FirebaseFirestore rootRef = FirebaseFirestore.getInstance();
@@ -115,8 +99,8 @@ public void existingUser() {
                                        "red!", Toast.LENGTH_LONG).show();
                                checkLogin();
                                Intent local = new Intent(LoginActivity.this, CasesOverview.class);
+                               finish();
                                startActivity(local);
-                               LoginActivity.this.finish();
 
                            } else {
                                Log.e(null, "Id does not exists");
@@ -135,15 +119,40 @@ public void existingUser() {
 
 
     }
-    public void newUser(){
+    private void newUser(){
         EditText n = (EditText) findViewById(R.id.txt_name);
+        String na = n.getText().toString().trim();
         String name = n.getText().toString();
         EditText i = (EditText) findViewById(R.id.txt_id);
+        String nic = i.getText().toString().trim();
         String id = i.getText().toString();
         EditText a = (EditText) findViewById(R.id.txt_address);
         String address = a.getText().toString();
         EditText nu = (EditText) findViewById(R.id.txt_number);
+        String tp = nu.getText().toString().trim();
         String number = nu.getText().toString();
+
+        if(na.length()<5){
+            n.setError("Enter Full Name!");
+            n.requestFocus();
+            return;
+        }
+        if(nic.isEmpty()){
+            i.setError("Identification is required!");
+            i.requestFocus();
+            return;
+        }
+        if(nic.length()<9){
+            i.setError("Wrong ID number!");
+            i.requestFocus();
+            return;
+        }
+        if(tp.length()<10){
+            nu.setError("Type in format 07XXXXXXXX!");
+            nu.requestFocus();
+            return;
+        }
+
 
         // Create a new user with a first and last name
         Map<String, Object> user = new HashMap<>();
@@ -169,8 +178,9 @@ public void existingUser() {
                                     " Added!", Toast.LENGTH_LONG).show();
                             checkLogin();
                             Intent local = new Intent(LoginActivity.this, CasesOverview.class);
+                            finish();
                             startActivity(local);
-                            LoginActivity.this.finish();
+
 
                         }
 
