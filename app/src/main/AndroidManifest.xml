@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.idcta.proj.app">
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -72,6 +73,11 @@
             android:screenOrientation="portrait"/>
 
         <activity android:name="com.idcta.proj.app.MainActivity"
+            android:theme="@style/AppTheme.NoActionbar"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name="com.idcta.proj.app.QrScanner"
             android:theme="@style/AppTheme.NoActionbar"
             android:configChanges="orientation"
             android:screenOrientation="portrait"/>

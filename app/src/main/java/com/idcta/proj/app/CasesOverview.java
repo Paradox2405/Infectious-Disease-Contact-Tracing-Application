@@ -1,9 +1,14 @@
 package com.idcta.proj.app;
 
+import android.Manifest;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -11,6 +16,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.app.ActivityCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -21,12 +27,20 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.budiyev.android.codescanner.CodeScanner;
+import com.budiyev.android.codescanner.CodeScannerView;
+import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.android.material.navigation.NavigationView;
+import com.google.zxing.Result;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class CasesOverview extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     private RecyclerView mRecyclerView;
@@ -34,11 +48,18 @@ public class CasesOverview extends AppCompatActivity implements NavigationView.O
     private RecyclerView.LayoutManager mLayoutManager;
     private RequestQueue mRequestQueue;
     private DrawerLayout drawer;
+    /// REQUIRED: Unique permission request code, used by requestPermission and onRequestPermissionsResult.
+    private final static int permissionRequestCode = 1249951875;
+    private final static String tag = CasesOverview.class.getName();
+
     //Give your SharedPreferences file a name and save it to a static variable
     public static final String PREFS_NAME = "MyPrefsFile";
     final int delay = 60000;//refresh cases interval
     final Handler handler = new Handler();
 
+    //for QR scanner
+    private CodeScanner mCodeScanner;
+    ImageButton btn_qr;
 
 
     @Override
@@ -53,6 +74,43 @@ public class CasesOverview extends AppCompatActivity implements NavigationView.O
         drawer=findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
+        // REQUIRED : Ensure app has all required permissions
+        requestPermissions();
+
+
+        btn_qr =(ImageButton)findViewById(R.id.btn_qr);
+        btn_qr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CasesOverview.this, QrScanner.class);
+                startActivity(intent);
+            }
+//                CodeScannerView scannerView = findViewById(R.id.scanner_view);
+//                mCodeScanner = new CodeScanner(QrScanner, scannerView);
+//                mCodeScanner.setDecodeCallback(new DecodeCallback() {
+//
+//                    @Override
+//                    public void onDecoded(@NonNull Result result) {
+//                        runOnUiThread(new Runnable() {
+//                            @Override
+//                            public void run() {
+//                                Toast.makeText(CasesOverview.this, result.getText(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        });
+//                    }
+//                    });
+//                scannerView.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        mCodeScanner.startPreview();
+//                    }
+//                });
+//            }
+
+        });
 
 //test of adding header data
 //     TextView name= (TextView) findViewById(R.id.txt_name);
@@ -81,6 +139,52 @@ public class CasesOverview extends AppCompatActivity implements NavigationView.O
         }, delay);
 
 
+    }
+
+    private void requestPermissions() {
+        // Check and request permissions
+        final List<String> requiredPermissions = new ArrayList<>();
+
+        requiredPermissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
+        requiredPermissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        requiredPermissions.add(Manifest.permission.BLUETOOTH);
+        requiredPermissions.add(Manifest.permission.BLUETOOTH_ADMIN);
+        requiredPermissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
+        requiredPermissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
+        requiredPermissions.add(Manifest.permission.INTERNET);
+        requiredPermissions.add(Manifest.permission.CAMERA);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            requiredPermissions.add(Manifest.permission.FOREGROUND_SERVICE);
+        }
+        requiredPermissions.add(Manifest.permission.WAKE_LOCK);
+        final String[] requiredPermissionsArray = requiredPermissions.toArray(new String[0]);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestPermissions(requiredPermissionsArray, permissionRequestCode);
+        } else {
+            ActivityCompat.requestPermissions(this, requiredPermissionsArray, permissionRequestCode);
+        }
+    }
+
+    /// REQUIRED : Handle permission results.
+    @Override
+    public void onRequestPermissionsResult(final int requestCode, @NonNull final String[] permissions, @NonNull final int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == permissionRequestCode) {
+            boolean permissionsGranted = true;
+            for (int i = 0; i < permissions.length; i++) {
+                final String permission = permissions[i];
+                if (grantResults[i] != PERMISSION_GRANTED) {
+                    Log.e(tag, "Permission denied (permission=" + permission + ")");
+                    permissionsGranted = false;
+                } else {
+                    Log.d(tag, "Permission granted (permission=" + permission + ")");
+                }
+            }
+
+            if (!permissionsGranted) {
+                Log.e(tag, "Application does not have all required permissions to start (permissions=" + Arrays.asList(permissions) + ")");
+            }
+        }
     }
 
     @Override

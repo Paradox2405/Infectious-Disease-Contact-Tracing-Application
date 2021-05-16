@@ -64,8 +64,7 @@ public class Contactlogs extends AppCompatActivity implements SensorDelegate,
     ImageButton btn_share;
 
     private final static String tag = MainActivity.class.getName();
-    /// REQUIRED: Unique permission request code, used by requestPermission and onRequestPermissionsResult.
-    private final static int permissionRequestCode = 1249951875;
+
     /// Test UI specific data, not required for production solution.
     private final static SimpleDateFormat dateFormatter = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
     private boolean foreground = false;
@@ -91,64 +90,57 @@ public class Contactlogs extends AppCompatActivity implements SensorDelegate,
         setContentView(R.layout.contactlogs);
 
 
-        // REQUIRED : Ensure app has all required permissions
-        requestPermissions();
-
         //share button event
         btn_share =(ImageButton)findViewById(R.id.btn_sharelogs);
         btn_share.setOnClickListener(new View.OnClickListener()   {
             public void onClick(View v)  {
 
-                Intent intentShareFile = new Intent(Intent.ACTION_SEND);
-                File fileWithinMyDir = new File(getFilesDir(),"detection.csv");
-
-                if(fileWithinMyDir.exists()) {
-                    intentShareFile.setType("text/*");
-                    Uri uri = FileProvider.getUriForFile(Contactlogs.this, BuildConfig.APPLICATION_ID + ".provider", fileWithinMyDir);
-                    intentShareFile.putExtra(Intent.EXTRA_STREAM, uri);
-                    intentShareFile.putExtra(Intent.EXTRA_SUBJECT,
-                            "Sharing File...");
-                    intentShareFile.putExtra(Intent.EXTRA_TEXT, "Sharing File...");
-                    intentShareFile.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-
-                    Intent chooser = Intent.createChooser(intentShareFile, "Share File");
-
-                    List<ResolveInfo> resInfoList = Contactlogs.this.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
-
-                    for (ResolveInfo resolveInfo : resInfoList) {
-                        String packageName = resolveInfo.activityInfo.packageName;
-                        Contactlogs.this.grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                    }
-
-                    startActivity(chooser);
-                }else {
-                    Log.e(null, "No File");
-                }
+//                Intent intentShareFile = new Intent(Intent.ACTION_SEND);
+//                File fileWithinMyDir = new File(getFilesDir(),"detection.csv");
+//
+//                if(fileWithinMyDir.exists()) {
+//                    intentShareFile.setType("text/*");
+//                    Uri uri = FileProvider.getUriForFile(Contactlogs.this, BuildConfig.APPLICATION_ID + ".provider", fileWithinMyDir);
+//                    intentShareFile.putExtra(Intent.EXTRA_STREAM, uri);
+//                    intentShareFile.putExtra(Intent.EXTRA_SUBJECT,
+//                            "Sharing File...");
+//                    intentShareFile.putExtra(Intent.EXTRA_TEXT, "Sharing File...");
+//                    intentShareFile.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//
+//                    Intent chooser = Intent.createChooser(intentShareFile, "Share File");
+//
+//                    List<ResolveInfo> resInfoList = Contactlogs.this.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
+//
+//                    for (ResolveInfo resolveInfo : resInfoList) {
+//                        String packageName = resolveInfo.activityInfo.packageName;
+//                        Contactlogs.this.grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+//                    }
+//
+//                    startActivity(chooser);
+//                }else {
+//                    Log.e(null, "No File");
+//                }
                 //Toast.makeText(Contactlogs.this,"Shareed",Toast.LENGTH_LONG).show();
 //
-//                File file = new File(Environment.getExternalStorageDirectory(),
-//                        "detection.csv");
-//                Uri path = FileProvider.getUriForFile(Contactlogs.this,BuildConfig.APPLICATION_ID+".provider",file);
+                File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),
+                        "detection.csv");
+                Uri path = FileProvider.getUriForFile(Contactlogs.this,BuildConfig.APPLICATION_ID+".provider",file);
 //                Intent csvOpenintent = new Intent(Intent.ACTION_VIEW);
 //                csvOpenintent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
 //                csvOpenintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //                csvOpenintent.setDataAndType(path, "Sensor/");
-//                try {
-//
-//
-//                    Intent fileIntent = new Intent(Intent.ACTION_SEND);
-//                    fileIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//
-//                    fileIntent.setType("text/csv*");
-//                    fileIntent.putExtra(Intent.EXTRA_STREAM, path);
-//                    Toast.makeText(Contactlogs.this," "+path,Toast.LENGTH_LONG).show();
-//                    startActivity(Intent.createChooser(fileIntent, "Send"));
-//
-//                }
-//                catch (ActivityNotFoundException e) {
-//                    Log.e(null," "+e);
-//
-//                }
+
+
+
+                    Intent fileIntent = new Intent(Intent.ACTION_SEND);
+                    fileIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+                    fileIntent.setType("text/*");
+                    fileIntent.putExtra(Intent.EXTRA_STREAM, path);
+                    Toast.makeText(Contactlogs.this," "+path,Toast.LENGTH_LONG).show();
+                    startActivity(Intent.createChooser(fileIntent, "Send"));
+
+
             }
         });
 
@@ -183,50 +175,8 @@ public class Contactlogs extends AppCompatActivity implements SensorDelegate,
         navigationView.setCheckedItem(R.id.nav_contactlogs);
     }
 
-    private void requestPermissions() {
-        // Check and request permissions
-        final List<String> requiredPermissions = new ArrayList<>();
 
-        requiredPermissions.add(Manifest.permission.READ_EXTERNAL_STORAGE);
-        requiredPermissions.add(Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        requiredPermissions.add(Manifest.permission.BLUETOOTH);
-        requiredPermissions.add(Manifest.permission.BLUETOOTH_ADMIN);
-        requiredPermissions.add(Manifest.permission.ACCESS_COARSE_LOCATION);
-        requiredPermissions.add(Manifest.permission.ACCESS_FINE_LOCATION);
-        requiredPermissions.add(Manifest.permission.INTERNET);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-            requiredPermissions.add(Manifest.permission.FOREGROUND_SERVICE);
-        }
-        requiredPermissions.add(Manifest.permission.WAKE_LOCK);
-        final String[] requiredPermissionsArray = requiredPermissions.toArray(new String[0]);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            requestPermissions(requiredPermissionsArray, permissionRequestCode);
-        } else {
-            ActivityCompat.requestPermissions(this, requiredPermissionsArray, permissionRequestCode);
-        }
-    }
 
-    /// REQUIRED : Handle permission results.
-    @Override
-    public void onRequestPermissionsResult(final int requestCode, @NonNull final String[] permissions, @NonNull final int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == permissionRequestCode) {
-            boolean permissionsGranted = true;
-            for (int i = 0; i < permissions.length; i++) {
-                final String permission = permissions[i];
-                if (grantResults[i] != PERMISSION_GRANTED) {
-                    Log.e(tag, "Permission denied (permission=" + permission + ")");
-                    permissionsGranted = false;
-                } else {
-                    Log.d(tag, "Permission granted (permission=" + permission + ")");
-                }
-            }
-
-            if (!permissionsGranted) {
-                Log.e(tag, "Application does not have all required permissions to start (permissions=" + Arrays.asList(permissions) + ")");
-            }
-        }
-    }
 
     private synchronized void updateTargets() {
         // De-duplicate targets based on short name and last updated at time stamp
