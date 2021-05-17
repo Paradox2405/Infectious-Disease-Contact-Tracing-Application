@@ -95,42 +95,11 @@ public class Contactlogs extends AppCompatActivity implements SensorDelegate,
         btn_share.setOnClickListener(new View.OnClickListener()   {
             public void onClick(View v)  {
 
-//                Intent intentShareFile = new Intent(Intent.ACTION_SEND);
-//                File fileWithinMyDir = new File(getFilesDir(),"detection.csv");
-//
-//                if(fileWithinMyDir.exists()) {
-//                    intentShareFile.setType("text/*");
-//                    Uri uri = FileProvider.getUriForFile(Contactlogs.this, BuildConfig.APPLICATION_ID + ".provider", fileWithinMyDir);
-//                    intentShareFile.putExtra(Intent.EXTRA_STREAM, uri);
-//                    intentShareFile.putExtra(Intent.EXTRA_SUBJECT,
-//                            "Sharing File...");
-//                    intentShareFile.putExtra(Intent.EXTRA_TEXT, "Sharing File...");
-//                    intentShareFile.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//
-//                    Intent chooser = Intent.createChooser(intentShareFile, "Share File");
-//
-//                    List<ResolveInfo> resInfoList = Contactlogs.this.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
-//
-//                    for (ResolveInfo resolveInfo : resInfoList) {
-//                        String packageName = resolveInfo.activityInfo.packageName;
-//                        Contactlogs.this.grantUriPermission(packageName, uri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                    }
-//
-//                    startActivity(chooser);
-//                }else {
-//                    Log.e(null, "No File");
-//                }
-                //Toast.makeText(Contactlogs.this,"Shareed",Toast.LENGTH_LONG).show();
-//
+
                 File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),
-                        "detection.csv");
+                        "Android/media/com.idcta.proj.app/Sensor/detection.csv");
+
                 Uri path = FileProvider.getUriForFile(Contactlogs.this,BuildConfig.APPLICATION_ID+".provider",file);
-//                Intent csvOpenintent = new Intent(Intent.ACTION_VIEW);
-//                csvOpenintent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-//                csvOpenintent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                csvOpenintent.setDataAndType(path, "Sensor/");
-
-
 
                     Intent fileIntent = new Intent(Intent.ACTION_SEND);
                     fileIntent.addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
