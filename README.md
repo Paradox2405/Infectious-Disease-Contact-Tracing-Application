@@ -83,3 +83,8 @@ The proximity detection solution has been integrated into a standalone app on An
 4. Select path *Android / media / com.vmware.herald.app / Sensor*.
 5. Expect a list of log files (e.g. *contacts.csv*).
 6. Drag and drop to copy log files to computer for analysis.
+
+
+### All Contributions are welcome! 
+
+Bug fixes and code optimiztions are in need!
