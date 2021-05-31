@@ -60,18 +60,20 @@ A procedure for installing and testing the solution in background mode is as fol
 
 ## Installation
 
-The proximity detection solution has been integrated into a standalone test app on iOS and Android for ease of evaluation, and to demonstrate how it can be applied in your own apps. The test app will detect, identify and measure distance for all iOS and Android devices within detection range, present the results on a simple user interface, and also write the results to local device storage for download and analysis.
+The proximity detection solution has been integrated into a standalone app on Android. The app will detect, identify and measure distance for all Android devices within detection range, present the results on a simple user interface, and also write the results to local device storage for download and analysis.
 
 ### Android app installation
 
 1. Open Android Studio.
 2. Select menu item *VCS > Git > Clone* to clone the Android repo as a new project.
-3. Select menu item *File > Sync Project with Gradle Files* to show both *app* and *herald* modules.
-4. Select menu item *Build > Make Project* to build *app* and *herald* modules.
-5. Enable Developer Mode on Android phone (*Settings > About > Software > Tap Build number repeatedly*).
-6. Connect Android phone to computer with USB cable, select device in Android Studio (PC emulator lacks bluetooth module required for application to function).
-7. Select menu item *Run > Run 'app'* to build and deploy test app.
-8. Expect the test app to open on the device.
+3. Add your own Firebase `google-services.json` file to project root folder.
+4. Add your google Maps API key to `"Your API Key"` in `app/src/main/AndroidManifest.xml`
+5. Select menu item *File > Sync Project with Gradle Files* to show both *app* and *herald* modules.
+6. Select menu item *Build > Make Project* to build *app* and *herald* modules.
+7. Enable Developer Mode on Android phone (*Settings > About > Software > Tap Build number repeatedly*).
+8. Connect Android phone to computer with USB cable, select device in Android Studio (PC emulator lacks bluetooth module required for application to function).
+9. Select menu item *Run > Run 'app'* to build and deploy test app.
+10. Expect the test app to open on the device.
 
 ### Android app log files
 
