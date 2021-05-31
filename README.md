@@ -85,6 +85,6 @@ The proximity detection solution has been integrated into a standalone app on An
 6. Drag and drop to copy log files to computer for analysis.
 
 
-### All Contributions are welcome! 
+### All contributions are welcome! 
 
 Bug fixes and code optimiztions are in need!
