@@ -1,5 +1,5 @@
 
-<img src="images/Poster.jpg" alt="poster" width="950px" height="600px">
+<img src="images/Poster.png" alt="poster" width="950px" height="600px">
 
 ## Interface
 <img src="images/Login.png" alt="Login" width="180px" height="349px">  <img src="images/Main.png" alt="Main" width="180px" height="350px">  <img src="images/ContactLogs.png" alt="Contacts" width="180px" height="350px">  <img src="images/Agrreement.png" alt="Agree" width="180px" height="350px">  <img src="images/About.png" alt="About" width="180px" height="350px">
