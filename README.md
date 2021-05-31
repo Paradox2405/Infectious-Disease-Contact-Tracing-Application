@@ -1,14 +1,17 @@
-# Herald-for-Android
 
-![Epidemiology](images/epidemiology.png)
+<img src="images/Poster.jpg" alt="poster" width="950px" height="600px">
 
-Continuous proximity detection across iOS and Android devices in background mode for contact tracing and infection control according to epidemiology requirements. 
+## Interface
+<img src="images/Login.png" alt="Login" width="180px" height="349px">    <img src="images/Main.png" alt="Main" width="180px" height="350px">    <img src="images/ContactLogs.png" alt="Contacts" width="180px" height="350px">    <img src="images/Agrreement.png" alt="Agree" width="180px" height="350px">    <img src="images/About.png" alt="About" width="180px" height="350px">
 
-Copyright 2020 VMware, Inc.
+## How tracing works
+<img src="images/epidemiology.png" alt="Epidomology" width="1000px" height="350px">
+
+Continuous proximity detection across Android devices in background for contact tracing and infection control according to epidemiology requirements. 
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache2.0-yellow.svg)](https://opensource.org/licenses/Apache-2.0)
 
-See LICENSE.txt and NOTICE.txt for details.
+See LICENSE.txt and NOTICE.txt for Herald protocol details.
 
 
 ## Introduction
@@ -22,6 +25,7 @@ This solution will:
 
 ## Key features
 
+- API Based on the Herald Protocol by 2020-2021 Herald Project Contributors. [The Herald Project](https://heraldprox.io/)
 - Works on the vast majority of phones worldwide (97.5%) by minimising operating system and hardware requirements (Statcounter, 2020).
 - Fully operational as a background app on Android devices for consistent and continuous use to maximise disease transmission monitoring and control across the population.
 - Low power usage (circa 2% per hour) to maximise population acceptance for continuous use.
@@ -65,7 +69,7 @@ The proximity detection solution has been integrated into a standalone test app 
 3. Select menu item *File > Sync Project with Gradle Files* to show both *app* and *herald* modules.
 4. Select menu item *Build > Make Project* to build *app* and *herald* modules.
 5. Enable Developer Mode on Android phone (*Settings > About > Software > Tap Build number repeatedly*).
-6. Connect Android phone to computer with USB cable, select device in Android Studio.
+6. Connect Android phone to computer with USB cable, select device in Android Studio (PC emulator lacks bluetooth module required for application to function).
 7. Select menu item *Run > Run 'app'* to build and deploy test app.
 8. Expect the test app to open on the device.
 
