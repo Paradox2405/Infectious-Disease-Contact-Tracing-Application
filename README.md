@@ -66,7 +66,7 @@ The proximity detection solution has been integrated into a standalone app on An
 
 1. Open Android Studio.
 2. Select menu item *VCS > Git > Clone* to clone the Android repo as a new project.
-3. Add your own Firebase `google-services.json` file to project root folder.
+3. Add your own Firebase `google-services.json` file to project root folder (App uses firestore to save login details).
 4. Add your google Maps API key to `"Your API Key"` in `app/src/main/AndroidManifest.xml`
 5. Select menu item *File > Sync Project with Gradle Files* to show both *app* and *herald* modules.
 6. Select menu item *Build > Make Project* to build *app* and *herald* modules.
