@@ -1,4 +1,6 @@
-![repo size](https://img.shields.io/github/repo-size/Paradox2405/Infectious-Disease-Contact-Tracing-Application.svg)
+![Repo Size](https://img.shields.io/github/repo-size/Paradox2405/Infectious-Disease-Contact-Tracing-Application?style=for-the-badge)
+![Stars](https://img.shields.io/github/stars/Paradox2405/Infectious-Disease-Contact-Tracing-Application?style=for-the-badge)
+![Licence](https://img.shields.io/github/license/Paradox2405/Infectious-Disease-Contact-Tracing-Application?style=for-the-badge)
 
 
 <img src="images/Poster.png" alt="poster" width="950px" height="600px">
