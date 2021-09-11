@@ -1,5 +1,4 @@
-https://img.shields.io/github/repo-size/Paradox2405/Infectious-Disease-Contact-Tracing-Application
-.svg
+https://img.shields.io/github/repo-size/Paradox2405/Infectious-Disease-Contact-Tracing-Application.svg
 
 
 <img src="images/Poster.png" alt="poster" width="950px" height="600px">
