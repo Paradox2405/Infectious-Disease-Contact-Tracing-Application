@@ -1,3 +1,7 @@
+# Infectious Disease Contact Tracing Application
+
+An Android contact tracing app that uses **Bluetooth Low Energy (BLE)** to detect nearby phones, estimate their distance and log every close contact in the background. If someone tests positive, their contacts can be found quickly. The proximity engine is built on the open-source [Herald protocol](https://heraldprox.io/).
+
 ![Repo Size](https://img.shields.io/github/repo-size/Paradox2405/Infectious-Disease-Contact-Tracing-Application?style=for-the-badge)
 ![Stars](https://img.shields.io/github/stars/Paradox2405/Infectious-Disease-Contact-Tracing-Application?style=for-the-badge)
 ![Licence](https://img.shields.io/github/license/Paradox2405/Infectious-Disease-Contact-Tracing-Application?style=for-the-badge)
@@ -9,7 +13,7 @@
 <img src="images/Login.png" alt="Login" width="180px" height="349px">  <img src="images/Main.png" alt="Main" width="180px" height="350px">  <img src="images/ContactLogs.png" alt="Contacts" width="180px" height="350px">  <img src="images/Agrreement.png" alt="Agree" width="180px" height="350px">
 
 ## How tracing works
-<img src="images/epidemiology.png" alt="Epidomology" width="900px" height="350px">
+<img src="images/epidemiology.png" alt="Epidemiology" width="900px" height="350px">
 
 Continuous proximity detection across Android devices in background for contact tracing and infection control according to epidemiology requirements. 
 
@@ -46,8 +50,24 @@ This solution will:
   - Android 5.0+, tested up to Android 10.0 (API level 29).
 
 - Hardware
-- 
+
   - Android phones with BLE, including phones that do not support BLE advertising.
+
+## App screens and tech stack
+
+| Screen | What it does |
+|---|---|
+| Login | Firebase sign-in |
+| Main | Live list of detected devices (targets) and their latest distance |
+| Contact logs | History of close contacts |
+| Cases overview | Live COVID-19 statistics from the Sri Lanka Health Promotion Bureau API |
+| Map view | Google Maps view |
+| QR scanner | Check-in by scanning a QR code |
+
+- **Java**, Android SDK (Android 5.0+)
+- **`herald` module**: BLE scanning and advertising, RSSI-based distance, social-distance analysis and CSV logging (Apache-2.0)
+- **Firebase** Firestore for login details
+- **Google Maps** SDK
 
 ## Quick start
 
@@ -89,6 +109,10 @@ The proximity detection solution has been integrated into a standalone app on An
 6. Drag and drop to copy log files to computer for analysis.
 
 
-### All contributions are welcome! 
+## Contributing
 
-Bug fixes and code optimiztions are in need!
+All contributions are welcome, especially bug fixes and code optimisations. See [contributing.md](contributing.md) and the [code of conduct](code_of_conduct.md).
+
+## Credits
+
+Proximity detection is based on the [Herald Project](https://heraldprox.io/) (2020–2021 Herald Project Contributors), licensed under Apache-2.0. See [LICENSE.txt](LICENSE.txt) and [NOTICE.txt](NOTICE.txt).
